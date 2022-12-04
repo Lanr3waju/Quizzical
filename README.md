@@ -17,7 +17,7 @@ It utilizes reacts Class components to function and implement its various featur
 
 ## Live Demo
 
-[Live Demo Link](https:///)
+[Live Demo Link](https://quizzikal-by-lanr3waju.netlify.app/)
 
 ### Development (Running locally)
 
@@ -73,7 +73,7 @@ npm run html-validator
 
 ## 👤 Author
 
-- Github: [@Lanr3waju]<https://github.com/Lanr3waju>)
+- Github: [@Lanr3waju](https://github.com/Lanr3waju)
 - LinkedIn: [@Abass Olanrewaju](https://www.linkedin.com/in/lanr3waju/)
 - Twitter: [@abdul-wasi-img](https://twitter.com/abdul_wasi_img)
 
