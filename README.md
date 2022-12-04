@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# Quizzical
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> This is a trivia application that generates 5 random questions and scores the user on completion of the quiz.
 
-## Available Scripts
+![screenshot](./src/images/preview.png)
 
-In the project directory, you can run:
+It utilizes reacts Class components to function and implement its various features.
 
-### `npm start`
+## Built With
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- JavaScript
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- CSS
 
-### `npm test`
+- React
+- JSX
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Live Demo
 
-### `npm run build`
+[Live Demo Link](https://quizzikal-by-lanr3waju.netlify.app/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Development (Running locally)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Clone the project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+git clone https://github.com/user/html-css-template.git
 
-### `npm run eject`
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Install Dependencies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+npm install
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To run StyleLint by itself, you may run the lint task:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm run lint:check
+```
 
-## Learn More
+Or to automatically fix issues found (where possible):
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run lint
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+You can also check against Prettier:
 
-### Code Splitting
+```bash
+npm run format:check
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+and to have it actually fix (to the best of its ability) any format issues, run:
 
-### Analyzing the Bundle Size
+```bash
+npm run format
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+You can also check against HTML Validator:
 
-### Making a Progressive Web App
+```bash
+npm run html-validator
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Style Guides
 
-### Advanced Configuration
+- [CSS Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/css.html)
+- [HTML Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/index.html)
+- [JavaScript Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html)
+- [Git Style Guide](https://udacity.github.io/git-styleguide/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 👤 Author
 
-### Deployment
+- Github: [@Lanr3waju](https://github.com/Lanr3waju)
+- LinkedIn: [@Abass Olanrewaju](https://www.linkedin.com/in/lanr3waju/)
+- Twitter: [@abdul-wasi-img](https://twitter.com/abdul_wasi_img)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🤝 Contributing
 
-### `npm run build` fails to minify
+Contributions, issues and feature requests are welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feel free to check the [issues page](../../issues).
+
+## Show your support
+
+Give a ⭐️ if you like this project!
+
+## Acknowledgments
+
+- I appreciate the efforts of my tutor and mentors for their constatnt guidance and contribtution.
+- [Bob Ziroll](http://linkedin.com/in/bobziroll)
+- [Bola Buhari](http://github.com/bolah2009)
+- [Adeleye Jamiu](https://github.com/adejam)
+
+## 📝 License
+
+[MIT licensed](./LICENSE).
