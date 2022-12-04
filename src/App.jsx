@@ -1,10 +1,29 @@
 import './App.css';
-
 import React from 'react';
+import WelcomePage from './components/WelcomePage';
 
 function App() {
+  const [difficulty, setDifficulty] = React.useState('');
+  const [welcomeScreen, setWelcomeScreen] = React.useState(true);
+
+  function handleDifficultyLevel({ target: { value } }) {
+    setDifficulty(value);
+  }
+
+  function handleScreenRender() {
+    setWelcomeScreen((prevState) => !prevState);
+  }
+
   return (
-    <div className="App" />
+    <main>
+      {welcomeScreen ? (
+        <WelcomePage
+          handleDifficultyLevel={(event) => handleDifficultyLevel(event)}
+          levelOfDifficulty={difficulty}
+          handleScreenRender={() => handleScreenRender()}
+        />
+      ) : <div>Test</div>}
+    </main>
   );
 }
 

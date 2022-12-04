@@ -1,4 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: Karla, sans-serif;
+}
+
+select {
+  width: auto;
+  padding: 8px;
+  margin: 10px;
+  font-family: Karla, sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  background-color: #11193d;
+  color: #f5f7fb;
+  border-radius: 10px;
+}
+
+.welcome-page {
+  background-color: #f5f7fb;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-image: url("./images/yellow-blob.png"), url("./images/blue-blob.png");
+  background-repeat: no-repeat;
+  background-position: right top, left bottom;
+}
+
+.welcome-page > h1 {
+  font-size: 31.25px;
+  color: #293264;
+  margin: 10px;
+}
+
+.welcome-page > button {
+  background: #4d5b9e;
+  border-radius: 15px;
+  padding: 10px;
+  border: 3px solid transparent;
+  width: 200px;
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #f5f7fb;
+  cursor: pointer;
+  transition: all 200ms ease-in-out;
+}
+
+.welcome-page > button:hover {
+  border: 3px solid#11193d;
+  transition: all 200ms ease-in-out;
 }
