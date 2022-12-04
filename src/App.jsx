@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import WelcomePage from './components/WelcomePage';
+import TestPage from './components/TestPage';
 
 function App() {
   const [difficulty, setDifficulty] = React.useState('');
@@ -22,7 +23,7 @@ function App() {
           levelOfDifficulty={difficulty}
           handleScreenRender={() => handleScreenRender()}
         />
-      ) : <div>Test</div>}
+      ) : <TestPage />}
     </main>
   );
 }

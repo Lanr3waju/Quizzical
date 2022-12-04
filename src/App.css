@@ -1,9 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Karla:wght@400;600;700&display=swap");
 
 * {
   box-sizing: border-box;
   margin: 0;
   font-family: Karla, sans-serif;
+  padding: 0;
+}
+
+ul li {
+  list-style-type: none;
 }
 
 select {
@@ -20,16 +25,24 @@ select {
   border-radius: 10px;
 }
 
-.welcome-page {
+.welcome-page,
+.test-page {
   background-color: #f5f7fb;
   min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   background-image: url("./images/yellow-blob.png"), url("./images/blue-blob.png");
   background-repeat: no-repeat;
   background-position: right top, left bottom;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.welcome-page {
+  justify-content: center;
+}
+
+.test-page {
+  padding: 80px;
 }
 
 .welcome-page > h1 {
@@ -55,4 +68,43 @@ select {
 .welcome-page > button:hover {
   border: 3px solid#11193d;
   transition: all 200ms ease-in-out;
+}
+
+.hr {
+  width: 100%;
+  height: 0;
+  border: 0.01px solid #dbdef0;
+}
+
+.question {
+  width: 60%;
+  margin-bottom: 30px;
+}
+
+.question > h3 {
+  font-weight: 700;
+  width: 100%;
+  font-size: 1.2em;
+  line-height: 19px;
+  color: #293264;
+}
+
+.question > ul {
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  color: #151e50;
+  justify-content: space-between;
+  width: 80%;
+  margin: 18px 0 22px;
+  opacity: 0.6;
+}
+
+.question > ul > li {
+  opacity: 0.5;
+  border: 0.8px solid #4d5b9e;
+  border-radius: 8px;
+  padding: 5px 20px;
+  cursor: pointer;
 }
