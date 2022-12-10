@@ -73,7 +73,7 @@ select {
 }
 
 .hr {
-  width: 100%;
+  width: 115%;
   height: 0;
   border: 0.01px solid #dbdef0;
 }
@@ -105,10 +105,34 @@ select {
 }
 
 .question > ul > li {
-  opacity: 0.5;
   border: 0.8px solid #4d5b9e;
   border-radius: 8px;
   padding: 5px 20px;
   cursor: pointer;
   margin: 10px;
+  transition: all 400ms ease-in-out;
+}
+
+.question > ul > li:hover {
+  color: #091135;
+  border: 0.8px solid #171d35;
+  transition: all 400ms ease-in-out;
+}
+
+.selected,
+.correct,
+.wrong {
+  color: #293264;
+}
+
+.selected {
+  background-color: #d6dbf5;
+}
+
+.correct {
+  background-color: #94d7a2;
+}
+
+.wrong {
+  background-color: #f8bcbc;
 }

@@ -31,8 +31,6 @@ function App() {
     setFetchedQuestions(data.results);
   }
 
-  console.log(fetchedQuestions);
-
   return (
     <main>
       {welcomeScreen ? (
