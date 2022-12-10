@@ -6,49 +6,49 @@ import { nanoid } from 'nanoid';
 import QuestionCard from './QuestionCard';
 
 export default function TestPage({ questions }) {
-  // const answers = () => {
-  //   let answersArr = [];
-  //   questions.map(({ incorrect_answers, correct_answer }) => {
-  //     const rightAnswerObj = { value: correct_answer, isSelected: false, id: nanoid() };
-  //     // console.log(rightAnswerObj);
-  //     answersArr = incorrect_answers.map((wrongAnswer) => (
-  //       { value: wrongAnswer, isSelected: false, id: nanoid() }
-  //     ));
-  //     answersArr.push(rightAnswerObj);
-  //     console.log(answersArr.sort(() => Math.random() - 0.5));
-  //     return answersArr;
-  //   });
-  //   return answersArr;
-  // };
+  const answers = () => questions.map(({
+    incorrect_answers, correct_answer,
+  }) => {
+    let answersArr = [];
+    const rightAnswerObj = { value: correct_answer, id: nanoid() };
+    answersArr = incorrect_answers.map((wrongAnswer) => (
+      { value: wrongAnswer, id: nanoid() }
+    ));
+    answersArr.push(rightAnswerObj);
+    return answersArr;
+  });
 
-  // // console.log(answers());
+  const [answersState] = React.useState(answers());
+  const [anz, setAnz] = React.useState([{ q: '', a: '', id: '' }]);
 
-  // const [answersState] = React.useState(answers());
+  // console.log(answersState);
 
-  // const [anz, setAnz] = React.useState([]);
+  function chooseAnswer({ target }) {
+    questions.forEach(({ question }) => {
+      const selAns = answersState.find((ans) => ans.id === target.id);
+      setAnz((prevAns) => {
+        if (selAns) { return [...[], { q: question, a: selAns.value, id: selAns.id }]; }
+        return prevAns;
+      });
+    });
+  }
 
-  // function chooseAnswer({ target }) {
-  //   const questionz = [];
-  //   const selAns = answersState.find((ans) => ans.id === target.id);
-  //   setAnz(selAns ? [...questions, { q: questionz, a: selAns.value, id: selAns.id }] :
-  //  questions);
-  // }
+  const el = questions.map(({ question }) => (
+    <QuestionCard
+      question={decode(question)}
+      key={nanoid()}
+      anz={anz}
+      answersState={answersState}
+      chooseAnswer={(event) => chooseAnswer(event)}
+    />
+  ));
+
+  // console.log(answersState);
 
   return (
     <section className="test-page">
-      {questions.map(({
-        question, incorrect_answers, correct_answer,
-      }) => (
-        <QuestionCard
-          question={decode(question)}
-          wrongAnswers={incorrect_answers}
-          rightAnswer={correct_answer}
-          key={nanoid()}
-          // answersState={answersState}
-          // chooseAnswer={() => chooseAnswer()}
-          // anz={anz}
-        />
-      ))}
+      {el}
+      <button type="button"> Submit Answers </button>
     </section>
   );
 }
