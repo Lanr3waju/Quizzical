@@ -1,23 +1,35 @@
-/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { decode } from 'html-entities';
 import { nanoid } from 'nanoid';
 
 export default function QuestionCard({
-  question, answersState, anz, chooseAnswer,
+  question, wrongAnswers, rightAnswer,
 }) {
-  console.log(answersState);
+  const answers = () => {
+    const rightAnswerObj = { value: rightAnswer, isSelected: false, id: nanoid() };
+    const answersArr = wrongAnswers.map((wrongAnswer) => (
+      { value: wrongAnswer, id: nanoid() }
+    ));
+    answersArr.push(rightAnswerObj);
+    return answersArr.sort(() => Math.random() - 0.5);
+  };
 
-  const answersEl = answersState.map((el) => el.forEach((answer) => <li className={anz[0].id === answer.id ? 'selected' : ''} id={answer.id} key={nanoid()} onClick={chooseAnswer} aria-hidden="true">{decode(answer.value)}</li>));
+  const [answersState] = React.useState(answers());
 
-  // answersEl();
+  const [anz, setAnz] = React.useState([{ q: question, a: '', id: '' }]);
 
-  // const answersEl = answersState.array.forEach((element) => {
-  //   element.map((answer) => <li className={anz[0].id === answer.id ? 'selected' : ''} id={answer.id} key={nanoid()} onClick={chooseAnswer} aria-hidden="true">{decode(answer.value)}</li>);
-  // });
+  function chooseAnswer({ target }) {
+    const selAns = answersState.find((ans) => ans.id === target.id);
+    setAnz((prevAns) => {
+      if (selAns) { return [...[], { q: question, a: selAns.value, id: selAns.id }]; }
+
+      return prevAns;
+    });
+  }
+
+  const answersEl = answersState.map((answer) => <li className={anz[0].id === answer.id ? 'selected' : ''} id={answer.id} key={nanoid()} onClick={(event) => chooseAnswer(event)} aria-hidden="true">{answer.value}</li>);
 
   return (
     <section className="question">
@@ -32,4 +44,6 @@ export default function QuestionCard({
 
 QuestionCard.propTypes = {
   question: PropTypes.string.isRequired,
+  rightAnswer: PropTypes.string.isRequired,
+  wrongAnswers: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
