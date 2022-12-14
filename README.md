@@ -1,6 +1,6 @@
 # Quizzical
 
-> This is a trivia application that generates 5 random questions and scores the user on completion of the quiz.
+> This is a trivia application that generates random questions and scores the user on completion of the quiz.
 
 ![screenshot](./src/images/preview.png)
 
@@ -13,7 +13,6 @@ It utilizes reacts Class components to function and implement its various featur
 - CSS
 
 - React
-- JSX
 
 ## Live Demo
 
