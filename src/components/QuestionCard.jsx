@@ -1,8 +1,5 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
 import { decode } from 'html-entities';
 import classNames from 'classnames';
 
@@ -45,7 +42,14 @@ export default function QuestionCard({
 }
 
 QuestionCard.propTypes = {
-  // question: PropTypes.string.isRequired,
-  // rightAnswer: PropTypes.string.isRequired,
-  // wrongAnswers: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  question: PropTypes.string.isRequired,
+  submitted: PropTypes.bool.isRequired,
+  chooseAnswer: PropTypes.func.isRequired,
+  correctAnswer: PropTypes.string.isRequired,
+  answersState: PropTypes.arrayOf(
+    PropTypes.shape(PropTypes.string.isRequired).isRequired,
+  ).isRequired,
+  selectedAnswers: PropTypes.arrayOf(
+    PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  ).isRequired,
 };

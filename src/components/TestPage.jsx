@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
@@ -35,11 +34,11 @@ export default function TestPage({ questions }) {
     <section className="test-page">
       {questionsState.length > 0 && questionsState.map((
         {
-          question, correct_answer, all_options,
+          question, correct_answer: correctAnswer, all_options: allOptions,
         },
       ) => {
         selectedAnswers.forEach((el) => {
-          if (el.selected_answer === correct_answer) {
+          if (el.selected_answer === correctAnswer) {
             score += 1;
           }
         });
@@ -49,10 +48,10 @@ export default function TestPage({ questions }) {
             question={question}
             key={nanoid()}
             submitted={submitted}
-            answersState={all_options}
+            answersState={allOptions}
             selectedAnswers={selectedAnswers}
             chooseAnswer={(event) => chooseAnswer(event)}
-            correctAnswer={correct_answer}
+            correctAnswer={correctAnswer}
           />
         );
       })}
