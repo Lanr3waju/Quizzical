@@ -47,6 +47,7 @@ function App() {
     <TestPage
       questions={fetchedQuestions}
       key={nanoid()}
+      fetchQuestions={() => fetchQuestions()}
     />
   ) : <p className="notice">Please wait, questions loading...</p>;
 

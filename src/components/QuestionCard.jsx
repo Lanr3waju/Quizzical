@@ -9,7 +9,7 @@ export default function QuestionCard({
   const answersEl = answersState.map((answer) => {
     const selectedAns = selectedAnswers.find(
       (selectedAnswer) => selectedAnswer.question === question
-      && selectedAnswer.selected_answer === answer,
+        && selectedAnswer.selected_answer === answer,
     );
     return (
       <li
@@ -46,10 +46,8 @@ QuestionCard.propTypes = {
   submitted: PropTypes.bool.isRequired,
   chooseAnswer: PropTypes.func.isRequired,
   correctAnswer: PropTypes.string.isRequired,
-  answersState: PropTypes.arrayOf(
-    PropTypes.shape(PropTypes.string.isRequired).isRequired,
-  ).isRequired,
+  answersState: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   selectedAnswers: PropTypes.arrayOf(
-    PropTypes.shape(PropTypes.object.isRequired).isRequired,
+    PropTypes.shape(PropTypes.string.isRequired).isRequired,
   ).isRequired,
 };

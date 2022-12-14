@@ -13,7 +13,6 @@ It utilizes reacts Class components to function and implement its various featur
 - CSS
 
 - React
-- JSX
 
 ## Live Demo
 

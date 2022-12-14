@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import QuestionCard from './QuestionCard';
 
-export default function TestPage({ questions }) {
+export default function TestPage({ questions, fetchQuestions }) {
   const [questionsState, setQuestionsState] = React.useState([]);
   const [selectedAnswers, setSelectedAnswers] = React.useState([]);
   const [submitted, setSubmitted] = React.useState(false);
@@ -24,6 +24,9 @@ export default function TestPage({ questions }) {
 
   function handleSubmit() {
     setSubmitted(!submitted);
+    if (submitted) {
+      fetchQuestions();
+    }
   }
 
   React.useEffect(() => {
@@ -56,14 +59,14 @@ export default function TestPage({ questions }) {
         );
       })}
       {selectedAnswers.length === questionsState.length ? (
-        <button type="button" onClick={handleSubmit}>
+        <button className="submit" type="button" onClick={handleSubmit}>
           {' '}
           {submitted ? 'Play Again' : 'Submit'}
           {' '}
         </button>
       )
         : (
-          <button disabled type="button" onClick={handleSubmit}>
+          <button className="submit" disabled type="button" onClick={handleSubmit}>
             {' '}
             {submitted ? 'Play Again' : 'Submit'}
             {' '}
@@ -78,4 +81,5 @@ TestPage.propTypes = {
   questions: PropTypes.arrayOf(
     PropTypes.shape(PropTypes.string.isRequired).isRequired,
   ).isRequired,
+  fetchQuestions: PropTypes.func.isRequired,
 };
