@@ -136,3 +136,10 @@ select {
 .wrong {
   background-color: #f8bcbc;
 }
+
+.notice {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+  color: #091135;
+}

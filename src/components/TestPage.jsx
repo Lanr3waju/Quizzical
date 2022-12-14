@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -6,37 +5,12 @@ import { nanoid } from 'nanoid';
 import QuestionCard from './QuestionCard';
 
 export default function TestPage({ questions }) {
-  const [questionsJamo, setQuestionsJamo] = React.useState([]);
+  const [questionsState, setQuestionsState] = React.useState([]);
   const [selectedAnswers, setSelectedAnswers] = React.useState([]);
-  // const [answersState] = React.useState(answers());
-
-  const questionCardEl = () => questionsJamo.map((
-    { question, correct_answer, incorrect_answers },
-  ) => {
-    const q = { q: question, id: nanoid() };
-
-    // return (
-    // <QuestionCard
-    //   question={q}
-    //   key={nanoid()}
-    //   answersState={answersState}
-    //   chooseAnswer={(event) => chooseAnswer(event)}
-    // />
-    // );
-  });
-
-  // const answers = () => {
-  //   const rightAnswerObj = { value: correct_answer, id: nanoid() };
-  //   let answersArr = incorrect_answers.map((wrongAnswer) => (
-  //     { value: wrongAnswer, id: nanoid() }
-  //   ));
-  //   answersArr = [...answersArr, rightAnswerObj];
-  //   return answersArr.sort(() => Math.random() - 0.5);
-  // };
-
+  const [submitted, setSubmitted] = React.useState(false);
   function chooseAnswer({ target }) {
-    const answerz = [...selectedAnswers];
-    const otherAns = answerz.filter((answer) => answer.question !== target.id);
+    const choice = [...selectedAnswers];
+    const otherAns = choice.filter((answer) => answer.question !== target.id);
     const newAnswers = [
       ...otherAns,
       {
@@ -47,41 +21,56 @@ export default function TestPage({ questions }) {
     setSelectedAnswers([...newAnswers]);
   }
 
+  let score = 0;
+
   function handleSubmit() {
-    // console.log(`0 / ${que.length}`);
+    setSubmitted(!submitted);
   }
 
   React.useEffect(() => {
-    if (questions.length > 0) { setQuestionsJamo(questions); }
+    if (questions.length > 0) { setQuestionsState(questions); }
   }, [questions]);
 
   return (
     <section className="test-page">
-      {questionsJamo.length > 0 && questionsJamo.map((
-        { question, correct_answer, incorrect_answers },
+      {questionsState.length > 0 && questionsState.map((
+        {
+          question, correct_answer, all_options,
+        },
       ) => {
-        const q = { q: question, id: nanoid() };
-
-        const answers = () => {
-          const rightAnswerObj = { value: correct_answer, id: nanoid() };
-          let answersArr = incorrect_answers.map((wrongAnswer) => (
-            { value: wrongAnswer, id: nanoid() }
-          ));
-          answersArr = [...answersArr, rightAnswerObj];
-          return answersArr.sort(() => Math.random() - 0.5);
-        };
+        selectedAnswers.forEach((el) => {
+          if (el.selected_answer === correct_answer) {
+            score += 1;
+          }
+        });
 
         return (
           <QuestionCard
-            question={q}
+            question={question}
             key={nanoid()}
-            answersState={answers()}
+            submitted={submitted}
+            answersState={all_options}
             selectedAnswers={selectedAnswers}
             chooseAnswer={(event) => chooseAnswer(event)}
+            correctAnswer={correct_answer}
           />
         );
       })}
-      <button type="button" onClick={handleSubmit}> Submit Answers </button>
+      {selectedAnswers.length === questionsState.length ? (
+        <button type="button" onClick={handleSubmit}>
+          {' '}
+          {submitted ? 'Play Again' : 'Submit'}
+          {' '}
+        </button>
+      )
+        : (
+          <button disabled type="button" onClick={handleSubmit}>
+            {' '}
+            {submitted ? 'Play Again' : 'Submit'}
+            {' '}
+          </button>
+        ) }
+      {submitted && <p>{`You score ${score} / ${questionsState.length}`}</p>}
     </section>
   );
 }

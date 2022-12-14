@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import { nanoid } from 'nanoid';
+import { shuffle } from 'lodash';
 import WelcomePage from './components/WelcomePage';
 import TestPage from './components/TestPage';
 
@@ -24,18 +25,6 @@ function App() {
     setWelcomeScreen((prevState) => !prevState);
   }
 
-  // async function fetchQuestions() {
-  //   const { difficulty, noOfQuestions } = dropDownVal;
-  //   const res = await fetch(`https://opentdb.com/api.php?amount=${noOfQuestions || 5}&difficulty=${difficulty}&type=multiple`);
-  //   const data = await res.json();
-  //   const fetchedData = data.result.map((result) => {
-  //     result['user_selection'] = null;
-  //     return result;
-  //   });
-  //   setFetchedQuestions(fetchedData);
-  //   console.log(fetchedData);
-  // }
-
   async function fetchQuestions() {
     const { difficulty, noOfQuestions } = dropDownVal;
     fetch(
@@ -45,13 +34,21 @@ function App() {
     ).then((data) => data.json()).then((data) => {
       const dataResults = [...data.results];
       const fetchedData = dataResults.map((result) => {
-        result.user_selection = null;
-        result.all_options = [...result.incorrect_answers, result.correct_answer];
+        const fetchResult = result;
+        fetchResult.user_selection = null;
+        fetchResult.all_options = shuffle([...result.incorrect_answers, result.correct_answer]);
         return result;
       });
       setFetchedQuestions(fetchedData);
     });
   }
+
+  const testEl = fetchedQuestions.length > 0 ? (
+    <TestPage
+      questions={fetchedQuestions}
+      key={nanoid()}
+    />
+  ) : <p className="notice">Please wait, questions loading...</p>;
 
   return (
     <main>
@@ -64,10 +61,7 @@ function App() {
           fetchQuestions={() => fetchQuestions()}
         />
       ) : (
-        <TestPage
-          questions={fetchedQuestions}
-          key={nanoid()}
-        />
+        testEl
       )}
     </main>
   );
