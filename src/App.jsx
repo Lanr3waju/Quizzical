@@ -24,11 +24,33 @@ function App() {
     setWelcomeScreen((prevState) => !prevState);
   }
 
+  // async function fetchQuestions() {
+  //   const { difficulty, noOfQuestions } = dropDownVal;
+  //   const res = await fetch(`https://opentdb.com/api.php?amount=${noOfQuestions || 5}&difficulty=${difficulty}&type=multiple`);
+  //   const data = await res.json();
+  //   const fetchedData = data.result.map((result) => {
+  //     result['user_selection'] = null;
+  //     return result;
+  //   });
+  //   setFetchedQuestions(fetchedData);
+  //   console.log(fetchedData);
+  // }
+
   async function fetchQuestions() {
     const { difficulty, noOfQuestions } = dropDownVal;
-    const res = await fetch(`https://opentdb.com/api.php?amount=${noOfQuestions || 5}&difficulty=${difficulty}&type=multiple`);
-    const data = await res.json();
-    setFetchedQuestions(data.results);
+    fetch(
+      `https://opentdb.com/api.php?amount=${
+        noOfQuestions || 5
+      }&difficulty=${difficulty}&type=multiple`,
+    ).then((data) => data.json()).then((data) => {
+      const dataResults = [...data.results];
+      const fetchedData = dataResults.map((result) => {
+        result.user_selection = null;
+        result.all_options = [...result.incorrect_answers, result.correct_answer];
+        return result;
+      });
+      setFetchedQuestions(fetchedData);
+    });
   }
 
   return (
