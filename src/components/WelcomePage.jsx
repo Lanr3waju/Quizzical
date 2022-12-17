@@ -14,7 +14,7 @@ export default function WelcomePage({
   }
 
   return (
-    <section className="welcome-page">
+    <form className="welcome-page">
       <h1>Quizzical</h1>
       <p>Select difficulty of questions</p>
       <select
@@ -41,7 +41,7 @@ export default function WelcomePage({
         <option value="15">15</option>
       </select>
       <button onClick={renderPageWithQuestions} type="button">Start quiz</button>
-    </section>
+    </form>
   );
 }
 

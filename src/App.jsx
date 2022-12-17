@@ -1,18 +1,17 @@
 import './App.css';
-import React from 'react';
-import { nanoid } from 'nanoid';
+import React, { useState } from 'react';
 import { shuffle } from 'lodash';
 import WelcomePage from './components/WelcomePage';
 import TestPage from './components/TestPage';
 
 function App() {
-  const [dropDownVal, setDropDownVal] = React.useState({
+  const [dropDownVal, setDropDownVal] = useState({
     difficulty: '',
     noOfQuestions: '',
   });
 
-  const [welcomeScreen, setWelcomeScreen] = React.useState(true);
-  const [fetchedQuestions, setFetchedQuestions] = React.useState([]);
+  const [welcomeScreen, setWelcomeScreen] = useState(true);
+  const [fetchedQuestions, setFetchedQuestions] = useState([]);
 
   function handleDropDownValues({ target: { value, name } }) {
     setDropDownVal((prevFormData) => ({
@@ -28,8 +27,7 @@ function App() {
   async function fetchQuestions() {
     const { difficulty, noOfQuestions } = dropDownVal;
     fetch(
-      `https://opentdb.com/api.php?amount=${
-        noOfQuestions || 5
+      `https://opentdb.com/api.php?amount=${noOfQuestions || 5
       }&difficulty=${difficulty}&type=multiple`,
     ).then((data) => data.json()).then((data) => {
       const dataResults = [...data.results];
@@ -46,10 +44,9 @@ function App() {
   const testEl = fetchedQuestions.length > 0 ? (
     <TestPage
       questions={fetchedQuestions}
-      key={nanoid()}
       fetchQuestions={() => fetchQuestions()}
     />
-  ) : <p className="notice">Please wait, questions loading...</p>;
+  ) : <p className="notice">Please wait, questions are loading...</p>;
 
   return (
     <main>

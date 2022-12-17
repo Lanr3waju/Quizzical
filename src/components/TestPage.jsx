@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
 import QuestionCard from './QuestionCard';
 
 export default function TestPage({ questions, fetchQuestions }) {
@@ -49,29 +48,18 @@ export default function TestPage({ questions, fetchQuestions }) {
         return (
           <QuestionCard
             question={question}
-            key={nanoid()}
+            key={question}
             submitted={submitted}
             answersState={allOptions}
             selectedAnswers={selectedAnswers}
-            chooseAnswer={(event) => chooseAnswer(event)}
+            chooseAnswer={(e) => chooseAnswer(e)}
             correctAnswer={correctAnswer}
           />
         );
       })}
-      {selectedAnswers.length === questionsState.length ? (
-        <button className="submit" type="button" onClick={handleSubmit}>
-          {' '}
-          {submitted ? 'Play Again' : 'Submit'}
-          {' '}
-        </button>
-      )
-        : (
-          <button className="submit" disabled type="button" onClick={handleSubmit}>
-            {' '}
-            {submitted ? 'Play Again' : 'Submit'}
-            {' '}
-          </button>
-        ) }
+      <button className="submit" disabled={selectedAnswers.length !== questionsState.length} type="button" onClick={handleSubmit}>
+        {submitted ? 'Play Again' : 'Submit'}
+      </button>
       {submitted && <p className="notice">{`You scored ${score} / ${questionsState.length} correct answers`}</p>}
     </section>
   );
