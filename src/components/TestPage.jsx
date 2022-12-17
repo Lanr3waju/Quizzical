@@ -58,10 +58,10 @@ export default function TestPage({ questions, fetchQuestions }) {
           />
         );
       })}
-      {selectedAnswers.length !== questionsState.length
-        && <p className="notice">You have to answer all questions to submit</p>}
+
+      <p className="notice">{selectedAnswers.length !== questionsState.length ? 'You have to answer all questions to submit 👀' : 'Good Luck 👍'}</p>
       <button className="submit" disabled={selectedAnswers.length !== questionsState.length} type="button" onClick={handleSubmit}>
-        {submitted ? 'Play Again' : 'Submit'}
+        {submitted ? 'Play Again 😊' : 'Submit'}
       </button>
       {submitted && <p className="notice">{`You scored ${score} / ${questionsState.length} correct answers`}</p>}
     </section>
