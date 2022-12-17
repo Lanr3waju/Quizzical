@@ -25,6 +25,7 @@ export default function TestPage({ questions, fetchQuestions }) {
     setSubmitted(!submitted);
     if (submitted) {
       fetchQuestions();
+      setSelectedAnswers([]);
     }
   }
 
@@ -57,6 +58,8 @@ export default function TestPage({ questions, fetchQuestions }) {
           />
         );
       })}
+      {selectedAnswers.length !== questionsState.length
+        && <p className="notice">You have to answer all questions to submit</p>}
       <button className="submit" disabled={selectedAnswers.length !== questionsState.length} type="button" onClick={handleSubmit}>
         {submitted ? 'Play Again' : 'Submit'}
       </button>
