@@ -4,7 +4,7 @@
 
 ![screenshot](./src/images/preview.png)
 
-It utilizes reacts Class components to function and implement its various features.
+It utilizes reacts functional components to function and implement its various features.
 
 ## Built With
 
@@ -13,6 +13,10 @@ It utilizes reacts Class components to function and implement its various featur
 - CSS
 
 - React
+
+- React ClassNames Library
+
+- React Hooks
 
 ## Live Demo
 
